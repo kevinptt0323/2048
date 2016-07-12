@@ -40,7 +40,7 @@ function genMap() {
     moveLeftScore[i] = scoreSum;
     leftMap[i] = i2;
   }
-  for(var i=65535; i; --i){
+  for(var i=65535; i>=0; --i){
     moveRightScore[mirrorMap[i]] = moveLeftScore[i];
     rightMap[mirrorMap[i]] = mirrorMap[leftMap[i]];
   }
@@ -78,6 +78,7 @@ _MyBoard.prototype.move = function(direction) {
       for(var i=0; i<4; ++i) {
         if (this.row[i] != rightMap[this.row[i]])
           change = true;
+        //console.log(this.row[i] + " " + moveRightScore[this.row[i]]);
         ret += moveRightScore[this.row[i]];
         this.row[i] = rightMap[this.row[i]];
       }
@@ -176,11 +177,9 @@ _MyBoard.prototype.mirrorUD = function() {    //upside down mirror
 
 
 function AiInputManager() {
-  var AI_DATA_SRC = "data/LR40-3-10-0.005.dat";
+  var AI_DATA_SRC = "https://dl.dropboxusercontent.com/u/23750072/LR40-3-10-0.005.dat";
   var self = this;
   self.events = {};
-  self.listen();
-
   (function(src) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", src, true);
@@ -203,12 +202,19 @@ function AiInputManager() {
           self.attrs.push(attr);
         }
       }
+      document.querySelector('.dimmer').classList.remove('dimmer');
     };
+    xhttp.onprogress = function(event) {
+      if (event.lengthComputable) {
+        var percentComplete = ((event.loaded / event.total)*100)|0;
+        document.querySelector("#progress").innerHTML = percentComplete + "%";
+      }
+    }
+
     xhttp.send();
 
-    
-
   })(AI_DATA_SRC);
+  self.listen();
 }
 
 AiInputManager.prototype.on = function (event, callback) {
@@ -275,10 +281,13 @@ AiInputManager.prototype.aiMove = function (data) {
   var nextDir = 0;
   var maxScore = 0;
   for(var direction=0; direction<4; direction++) {
+    //console.log("dir:" + direction);
     var board = new _MyBoard(data.grid);
     var score = board.move(direction)
+    //console.log("score:" + score);
     if (score>=0) {
       score += board.getScore(this.attrs);
+      //console.log("score2:" + score);
       if (score>maxScore) {
         nextDir = direction;
         maxScore = score;

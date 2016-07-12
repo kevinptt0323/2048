@@ -33,7 +33,7 @@ input {
     cursor: auto;
     background: #fcfbf9;
     font-weight: normal;
-    color: #776e65;
+    color: #776E65;
     padding: 0 15px; }
     input[type="text"]::-webkit-input-placeholder, input[type="email"]::-webkit-input-placeholder {
       color: #9d948c; }
@@ -163,22 +163,19 @@ hr {
     opacity: 0; }
   100% {
     opacity: 1; } }
-@-webkit-keyframes slide-up {
+@-webkit-keyframes $animation-name {
   0% {
     margin-top: 32%; }
-
   100% {
     margin-top: 20%; } }
-@-moz-keyframes slide-up {
+@-moz-keyframes $animation-name {
   0% {
     margin-top: 32%; }
-
   100% {
     margin-top: 20%; } }
-@keyframes slide-up {
+@keyframes $animation-name {
   0% {
     margin-top: 32%; }
-
   100% {
     margin-top: 20%; } }
 .game-container {
@@ -962,87 +959,93 @@ hr {
           left: 50%;
           bottom: 2px; } }
 
-@-webkit-keyframes pop-in-big {
+@-webkit-keyframes $animation-name {
   0% {
     -webkit-transform: scale(0) translateZ(0);
     -moz-transform: scale(0) translateZ(0);
+    -ms-transform: scale(0) translateZ(0);
     transform: scale(0) translateZ(0);
     opacity: 0;
     margin-top: -56px; }
-
   100% {
     -webkit-transform: scale(1) translateZ(0);
     -moz-transform: scale(1) translateZ(0);
+    -ms-transform: scale(1) translateZ(0);
     transform: scale(1) translateZ(0);
     opacity: 1;
     margin-top: 30px; } }
-@-moz-keyframes pop-in-big {
+@-moz-keyframes $animation-name {
   0% {
     -webkit-transform: scale(0) translateZ(0);
     -moz-transform: scale(0) translateZ(0);
+    -ms-transform: scale(0) translateZ(0);
     transform: scale(0) translateZ(0);
     opacity: 0;
     margin-top: -56px; }
-
   100% {
     -webkit-transform: scale(1) translateZ(0);
     -moz-transform: scale(1) translateZ(0);
+    -ms-transform: scale(1) translateZ(0);
     transform: scale(1) translateZ(0);
     opacity: 1;
     margin-top: 30px; } }
-@keyframes pop-in-big {
+@keyframes $animation-name {
   0% {
     -webkit-transform: scale(0) translateZ(0);
     -moz-transform: scale(0) translateZ(0);
+    -ms-transform: scale(0) translateZ(0);
     transform: scale(0) translateZ(0);
     opacity: 0;
     margin-top: -56px; }
-
   100% {
     -webkit-transform: scale(1) translateZ(0);
     -moz-transform: scale(1) translateZ(0);
+    -ms-transform: scale(1) translateZ(0);
     transform: scale(1) translateZ(0);
     opacity: 1;
     margin-top: 30px; } }
-@-webkit-keyframes pop-in-small {
+@-webkit-keyframes $animation-name {
   0% {
     -webkit-transform: scale(0) translateZ(0);
     -moz-transform: scale(0) translateZ(0);
+    -ms-transform: scale(0) translateZ(0);
     transform: scale(0) translateZ(0);
     opacity: 0;
     margin-top: -76px; }
-
   100% {
     -webkit-transform: scale(1) translateZ(0);
     -moz-transform: scale(1) translateZ(0);
+    -ms-transform: scale(1) translateZ(0);
     transform: scale(1) translateZ(0);
     opacity: 1;
     margin-top: 10px; } }
-@-moz-keyframes pop-in-small {
+@-moz-keyframes $animation-name {
   0% {
     -webkit-transform: scale(0) translateZ(0);
     -moz-transform: scale(0) translateZ(0);
+    -ms-transform: scale(0) translateZ(0);
     transform: scale(0) translateZ(0);
     opacity: 0;
     margin-top: -76px; }
-
   100% {
     -webkit-transform: scale(1) translateZ(0);
     -moz-transform: scale(1) translateZ(0);
+    -ms-transform: scale(1) translateZ(0);
     transform: scale(1) translateZ(0);
     opacity: 1;
     margin-top: 10px; } }
-@keyframes pop-in-small {
+@keyframes $animation-name {
   0% {
     -webkit-transform: scale(0) translateZ(0);
     -moz-transform: scale(0) translateZ(0);
+    -ms-transform: scale(0) translateZ(0);
     transform: scale(0) translateZ(0);
     opacity: 0;
     margin-top: -76px; }
-
   100% {
     -webkit-transform: scale(1) translateZ(0);
     -moz-transform: scale(1) translateZ(0);
+    -ms-transform: scale(1) translateZ(0);
     transform: scale(1) translateZ(0);
     opacity: 1;
     margin-top: 10px; } }
@@ -1081,3 +1084,15 @@ hr {
       animation: pop-in-small 700ms ease 2s both;
       margin-top: 10px;
       height: 76px; } }
+
+.dimmer {
+  background: rgba(255, 255, 255, 0.6);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
