@@ -56,6 +56,18 @@ GameManager.prototype.setup = function () {
 
   // Update the actuator
   this.actuate();
+
+  this.inputManager.emit("update", {
+    grid: this.grid,
+    metadata: {
+      score:      this.score,
+      over:       this.over,
+      won:        this.won,
+      bestScore:  this.storageManager.getBestScore(),
+      terminated: this.isGameTerminated()
+    },
+    setup: true
+  });
 };
 
 // Set up the initial tiles to start the game with
@@ -188,6 +200,18 @@ GameManager.prototype.move = function (direction) {
 
     this.actuate();
   }
+
+  this.inputManager.emit("update", {
+    grid: this.grid,
+    metadata: {
+      score:      this.score,
+      over:       this.over,
+      won:        this.won,
+      bestScore:  this.storageManager.getBestScore(),
+      terminated: this.isGameTerminated()
+    },
+    setup: false
+  });
 };
 
 // Get the vector representing the chosen direction
