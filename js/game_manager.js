@@ -188,6 +188,17 @@ GameManager.prototype.move = function (direction) {
 
     this.actuate();
   }
+
+  this.inputManager.emit("moved", {
+    grid: this.grid,
+    metadata: {
+      score:      this.score,
+      over:       this.over,
+      won:        this.won,
+      bestScore:  this.storageManager.getBestScore(),
+      terminated: this.isGameTerminated()
+    }
+  });
 };
 
 // Get the vector representing the chosen direction
