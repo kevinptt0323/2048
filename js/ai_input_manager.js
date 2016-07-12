@@ -177,7 +177,7 @@ _MyBoard.prototype.mirrorUD = function() {    //upside down mirror
 
 
 function AiInputManager() {
-  var AI_DATA_SRC = "data/LR40-3-10-0.005.dat";
+  var AI_DATA_SRC = "https://dl.dropboxusercontent.com/u/23750072/LR40-3-10-0.005.dat";
   var self = this;
   self.events = {};
   (function(src) {
