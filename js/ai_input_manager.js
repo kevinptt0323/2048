@@ -180,8 +180,6 @@ function AiInputManager() {
   var AI_DATA_SRC = "data/LR40-3-10-0.005.dat";
   var self = this;
   self.events = {};
-  self.listen();
-
   (function(src) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", src, true);
@@ -204,12 +202,19 @@ function AiInputManager() {
           self.attrs.push(attr);
         }
       }
+      document.querySelector('.dimmer').classList.remove('dimmer');
     };
+    xhttp.onprogress = function(event) {
+      if (event.lengthComputable) {
+        var percentComplete = ((event.loaded / event.total)*100)|0;
+        document.querySelector("#progress").innerHTML = percentComplete + "%";
+      }
+    }
+
     xhttp.send();
 
-    
-
   })(AI_DATA_SRC);
+  self.listen();
 }
 
 AiInputManager.prototype.on = function (event, callback) {
