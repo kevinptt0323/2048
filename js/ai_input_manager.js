@@ -69,38 +69,36 @@ _MyBoard.prototype.move = function(direction) {
   switch (direction) {
     case 3: // left
       for(var i=0; i<4; ++i) {
-        if (this.row[i] != leftMap[this.row[i]])
+        if (this.row[i] != leftMap[this.row[i]]) {
           change = true;
-        ret += moveLeftScore[this.row[i]];
-        this.row[i] = leftMap[this.row[i]];
+          ret += moveLeftScore[this.row[i]];
+          this.row[i] = leftMap[this.row[i]];
+        }
       }
       break;
     case 1: // right
       for(var i=0; i<4; ++i) {
-        if (this.row[i] != rightMap[this.row[i]])
+        if (this.row[i] != rightMap[this.row[i]]) {
           change = true;
-        //console.log(this.row[i] + " " + moveRightScore[this.row[i]]);
-        ret += moveRightScore[this.row[i]];
-        this.row[i] = rightMap[this.row[i]];
+          ret += moveRightScore[this.row[i]];
+          this.row[i] = rightMap[this.row[i]];
+        }
       }
       break;
     case 0: // up
       this.trans();
       ret = this.move(3);
-      change = true;
+      change = ret != -INF;
       this.trans();
       break;
-    case 2: // left
+    case 2: // down
       this.trans();
       ret = this.move(1);
-      change = true;
+      change = ret != -INF;
       this.trans();
       break;
   }
-  if(!change)
-    return -INF;
-  else
-    return ret;
+  return change ? ret : -INF;
 }
 
 _MyBoard.prototype.getCell = function(x, y) {
@@ -277,7 +275,7 @@ AiInputManager.prototype.listen = function () {
     }
     else if (!data.metadata.terminated) {
       setTimeout(function() {
-        self.aiMove(data)
+        self.aiMove(data);
       }, 100);
     }
   });
@@ -324,7 +322,4 @@ AiInputManager.prototype.aiMove = function (data) {
   }
   if (nextDir==-1) nextDir = 0;
   this.emit("move", nextDir);
-}
-
-AiInputManager.prototype._move = function (data, direction) {
 }
