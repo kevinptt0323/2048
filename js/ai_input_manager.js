@@ -1,3 +1,4 @@
+var INF = (1<<30);
 var
   leftMap        = new Array(65536),
   rightMap       = new Array(65536),
@@ -97,7 +98,7 @@ _MyBoard.prototype.move = function(direction) {
       break;
   }
   if(!change)
-    return -1;
+    return -INF;
   else
     return ret;
 }
@@ -305,22 +306,23 @@ AiInputManager.prototype.randomMove = function (data) {
 }
 
 AiInputManager.prototype.aiMove = function (data) {
-  var nextDir = 0;
-  var maxScore = 0;
+  var nextDir = -1;
+  var maxScore;
   for(var direction=0; direction<4; direction++) {
     //console.log("dir:" + direction);
     var board = new _MyBoard(data.grid);
     var score = board.move(direction)
     //console.log("score:" + score);
-    if (score>=0) {
+    if (score!=-INF) {
       score += board.getScore(this.attrs);
       //console.log("score2:" + score);
-      if (score>maxScore) {
+      if (nextDir==-1 || score>maxScore) {
         nextDir = direction;
         maxScore = score;
       }
     }
   }
+  if (nextDir==-1) nextDir = 0;
   this.emit("move", nextDir);
 }
 
