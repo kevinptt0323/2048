@@ -276,7 +276,7 @@ AiInputManager.prototype.listen = function () {
     else if (!data.metadata.terminated) {
       setTimeout(function() {
         self.aiMove(data);
-      }, 100);
+      }, 50);
     }
   });
 
